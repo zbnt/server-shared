@@ -18,6 +18,14 @@
 
 #include <Utils.hpp>
 
+void writeMessage(QIODevice *dev, MessageID msgID, const QByteArray &value)
+{
+	dev->write(MSG_MAGIC_IDENTIFIER, 4);
+	writeAsBytes<uint16_t>(dev, msgID);
+	writeAsBytes<uint16_t>(dev, value.size());
+	dev->write(value);
+}
+
 void buildMessage(QByteArray &array, MessageID msgID, const QByteArray &value)
 {
 	array.append(MSG_MAGIC_IDENTIFIER, 4);

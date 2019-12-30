@@ -20,6 +20,7 @@
 
 #include <cstdint>
 
+#include <QIODevice>
 #include <QByteArray>
 
 #include <Messages.hpp>
@@ -28,6 +29,12 @@ template<typename T1, typename T2>
 constexpr T1 *makePointer(T2 *base, uint32_t offset)
 {
 	return (T1*) (uintptr_t(base) + offset);
+}
+
+template<typename T>
+void writeAsBytes(QIODevice *dev, T data)
+{
+	dev->write((const char*) &data, sizeof(T));
 }
 
 template<typename T>
@@ -69,5 +76,6 @@ void setDeviceProperty(QByteArray &array, uint8_t devID, PropertyID propID, T va
 	appendAsBytes(array, value);
 }
 
+extern void writeMessage(QIODevice *dev, MessageID msgID, const QByteArray &value);
 extern void buildMessage(QByteArray &array, MessageID msgID, const QByteArray &value);
 extern void setDeviceProperty(QByteArray &array, uint8_t devID, PropertyID propID, const QByteArray &value);
