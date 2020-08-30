@@ -78,3 +78,22 @@ void setDeviceProperty(QByteArray &array, uint8_t devID, PropertyID propID, cons
 
 	array.append(value);
 }
+
+void padByteArray(QByteArray &array, int length, char padding)
+{
+	if(array.size() > length)
+	{
+		array.resize(length);
+	}
+	else if(array.size() < length)
+	{
+		array.append(length - array.size(), padding);
+	}
+}
+
+QByteArray padString(const char *str, int length, char padding)
+{
+	QByteArray array(str);
+	padByteArray(array, length, padding);
+	return array;
+}

@@ -79,3 +79,6 @@ void setDeviceProperty(QByteArray &array, uint8_t devID, PropertyID propID, T va
 extern void writeMessage(QIODevice *dev, MessageID msgID, const QByteArray &value);
 extern void buildMessage(QByteArray &array, MessageID msgID, const QByteArray &value);
 extern void setDeviceProperty(QByteArray &array, uint8_t devID, PropertyID propID, const QByteArray &value);
+
+extern void padByteArray(QByteArray &array, int length, char padding = 0);
+extern QByteArray padString(const char *str, int length, char padding = 0);
