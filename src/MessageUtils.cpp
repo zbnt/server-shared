@@ -16,7 +16,7 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include <Utils.hpp>
+#include <MessageUtils.hpp>
 
 void writeMessage(QIODevice *dev, MessageID msgID, const QByteArray &value)
 {
