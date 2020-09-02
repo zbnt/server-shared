@@ -28,11 +28,11 @@ public:
 	MessageReceiver();
 	~MessageReceiver();
 
-	virtual void onMessageReceived(quint16 id, const QByteArray &data) = 0;
-
 protected:
+	virtual void onMessageReceived(quint16 id, const QByteArray &data) = 0;
 	void handleIncomingData(const QByteArray &readData);
 
+private:
 	RxStatus m_rxStatus = MSG_RX_MAGIC;
 	quint32 m_rxByteCount = 0;
 	quint32 m_rxMsgSize = 0;
