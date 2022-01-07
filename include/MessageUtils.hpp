@@ -19,6 +19,7 @@
 #pragma once
 
 #include <cstdint>
+#include <memory>
 
 #include <QIODevice>
 #include <QByteArray>
@@ -33,6 +34,12 @@ constexpr T1 *makePointer(T2 *base, uint32_t offset)
 
 template<typename T>
 void writeAsBytes(QIODevice *dev, T data)
+{
+	dev->write((const char*) &data, sizeof(T));
+}
+
+template<typename T>
+void writeAsBytes(std::shared_ptr<QIODevice> &dev, T data)
 {
 	dev->write((const char*) &data, sizeof(T));
 }
